@@ -55,7 +55,7 @@ def replaceTerminal(Productions, Variables, Terminal): # Mengubah semua terminal
         i = -1
         for rule in prod[1]:
             i += 1
-            if rule in Terminal:
+            if rule in Terminal and prod[0] != dict[rule]:
                 prod[1].pop(i)
                 prod[1].insert(i, dict[rule])
     return Productions
