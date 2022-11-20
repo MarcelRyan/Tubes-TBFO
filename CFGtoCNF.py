@@ -40,7 +40,9 @@ def isUnit(rules, Variables): # Menentukan apakah sebuah rules menghasilkan 1 va
         return False
 
 def makeDict(Productions, Variables, Terminal):
-    dict = {}
+    dict = {'"': variablesJar.pop(), "'": variablesJar.pop()}
+    Productions.append((dict['"'], ['"']))
+    Productions.append((dict['\''], ['\'']))
     for prod in Productions:
         if prod[0] in Variables and prod[1][0] in Terminal and len(prod[1]) == 1:
             dict[prod[1][0]] = variablesJar.pop()
@@ -50,9 +52,12 @@ def makeDict(Productions, Variables, Terminal):
 def replaceTerminal(Productions, Variables, Terminal): # Mengubah semua terminal menjadi variabel
     dict, Productions = makeDict(Productions, Variables, Terminal)
     for prod in Productions:
+        i = -1
         for rule in prod[1]:
+            i += 1
             if rule in Terminal:
-                rule = dict[rule]
+                prod[1].pop(i)
+                prod[1].insert(i, dict[rule])
     return Productions
         
 
@@ -63,7 +68,7 @@ def removeUnit(Productions, Variables): # Menghapus unit production
         if (isUnit(rules1, Variables)):
             temp = rules1[1][0]
             rules1[1].pop()
-            for rules2 in Productions:
+            for rules2 in Productions: 
                 if (temp == rules2[0]):
                     rules1[1].append(rules2[1])
         new_prod.append(rules1) 
