@@ -35,10 +35,12 @@ def splitcode(nama_file):
             hasil_akhir.append(hasil[i])
     hasil_final = []
     for i in range(len(hasil_akhir)):
-        if(hasil_akhir[i]==' ' and ((hasil_akhir[i-1] in oprt1) or (hasil_akhir[i+1] in oprt1))):
+        if(hasil_akhir[i]==' ' and ((hasil_akhir[i-1] in oprt2) or (hasil_akhir[i+1] in oprt2))):
+            continue
+        elif(hasil_akhir[i]==' ' and ((hasil_akhir[i-1] in oprt2) and (hasil_akhir[i+1] in oprt2))):
             continue
         else:
             hasil_final.append(hasil_akhir[i])
     return hasil_final
-#y = splitcode('D:\python file\TBFO\js.txt')
-#print(y)
+y = splitcode('D:\\python\\Tubes TBFO\\Tubes-TBFO\\coba.txt')
+print(y)
