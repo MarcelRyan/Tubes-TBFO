@@ -33,6 +33,12 @@ def splitcode(nama_file):
             continue
         else:
             hasil_akhir.append(hasil[i])
-    return hasil_akhir
+    hasil_final = []
+    for i in range(len(hasil_akhir)):
+        if(hasil_akhir[i]==' ' and ((hasil_akhir[i-1] in oprt1) or (hasil_akhir[i+1] in oprt1))):
+            continue
+        else:
+            hasil_final.append(hasil_akhir[i])
+    return hasil_final
 #y = splitcode('D:\python file\TBFO\js.txt')
 #print(y)
