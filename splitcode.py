@@ -7,8 +7,8 @@ def splitcode(nama_file):
     file = open(nama_file,"r")
     isi  = file.read()
     file.close()
-    isi = re.split(r'\s+',isi)       
-    
+    isi = isi.split('  ')       
+    # re.split(r'\s+',isi)
     for oprt in oprt1:
         hasil = []
         for stmnt in isi:
@@ -27,6 +27,12 @@ def splitcode(nama_file):
             else:
                 split = list(stmnt2)
                 hasil.extend(split)
-    return hasil
+    hasil_akhir = []
+    for i in range(len(hasil)):
+        if(hasil[i]=='\n'):
+            continue
+        else:
+            hasil_akhir.append(hasil[i])
+    return hasil_akhir
 #y = splitcode('D:\python file\TBFO\js.txt')
 #print(y)
