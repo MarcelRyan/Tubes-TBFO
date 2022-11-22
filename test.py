@@ -1,4 +1,5 @@
 import json
+import sys
 variablesJar = ["A1", "B1", "C1", "D1", "E1", "F1", "G1", "H1", "I1", "J1", "K1", "L1", "M1", "N1", "O1", "P1", "Q1", "R1", "S1", "T1", "U1", "V1", "W1", "X1", "Y1", "Z1",
 "A2", "B2", "C2", "D2", "E2", "F2", "G2", "H2", "I2", "J2", "K2", "L2", "M2", "N2", "O2", "P2", "Q2", "R2", "S2", "T2", "U2", "V2", "W2", "X2", "Y2", "Z2",
 "A3", "B3", "C3", "D3", "E3", "F3", "G3", "H3", "I3", "J3", "K3", "L3", "M3", "N3", "O3", "P3", "Q3", "R3", "S3", "T3", "U3", "V3", "W3", "X3", "Y3", "Z3",
@@ -141,6 +142,9 @@ for prod in Prod:
   dict[prod[1][0]] = variablesJar.pop()
   Prod.append((dict[prod[1][0]], [prod[1][0]]))
 
+orig_stdout = sys.stdout
+f = open('log.txt', 'w')
+sys.stdout = f
 json.dumps(dict)
 #print("Dictionary baru")
 #print(dict)
@@ -158,12 +162,12 @@ for prod in Prod:
 				#print(prod[1])
             
 print("Terminal assigment")
-#print(Prod)
+print(Prod)
 
 new_prod = []
 for rules1 in Prod:
         # if ((rules1[0] in y) and rules1[1][0] in y and len(rules1[1]) == 1):
-        if ((rules1[0] in y) and rules1[1][0] in y and len(rules1[1]) == 1 and rules[1][0] != 'ALPHABET' and rules[1][0] != 'NUM'):
+        if ((rules1[0] in y) and rules1[1][0] in y and len(rules1[1]) == 1):
             temp = rules1[1][0]
             rules1[1].pop()
             for rules2 in Prod:
@@ -171,7 +175,7 @@ for rules1 in Prod:
                     rules1[1].append(rules2[1])
         new_prod.append(rules1)
 print("Ini isinya")
-#print(new_prod)
+print(new_prod)
 '''new_prod = []
 for rules1 in Prod:
         if ((rules1[0] in y) and rules1[1][0] in y and len(rules1[1]) == 1):
@@ -185,13 +189,18 @@ for rules1 in Prod:
 #print("old prod: ")
 #print(Prod)
 #print("now prod")
+
+
+
+
 for prod in Prod:
     for rule in prod[1]:
         if isinstance(rule, list):
             if(len(rule)>2):
                 #print(rule)
                 while(len(rule)>=2):
-                    #print(rule)
+                    
+                    print(rule)
                     #test_prod.append()
                     temp1 = rule.pop() #pop "A"
                     temp2 = rule.pop() #pop "B"
@@ -199,6 +208,8 @@ for prod in Prod:
                     Prod.append((rule, [temp1, temp2]))
 print("new Prod")
 print(Prod)
+sys.stdout = orig_stdout
+f.close()
 #lines = ['Readme', 'How to write text files in Python']
 #with open('readme.txt', 'w') as f:
    # f.writelines(Prod)
