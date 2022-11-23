@@ -40,7 +40,7 @@ def readGrammarFile(file): # Membaca file grammar
     finalProd = []
     Terminal = Terminal.replace('  ', ' ').split(' ')
     Variables = Variables.replace('  ', ' ').split(' ')
-    Rules = RawProd.replace("\n", "").split(";")
+    Rules = RawProd.replace("\n", "").split(".")
     for rule in Rules:
         leftproduction = rule.split(' -> ')[0].replace(" ", "")
         rightproduction = rule.split(' -> ')[1].split(" | ")
@@ -137,7 +137,7 @@ def removeUnit(Productions, Variables): # Menghapus unit production
     return new_prod
 
 
-def ProdDict(Productions) :
+def ProdDict(Productions) : # Membuat dictionary untuk production akhir
     new_dict = {}
     for prod in Productions:
         if (prod[0] in new_dict.keys()):
@@ -152,13 +152,13 @@ def convertCFG():
     print(Variabel)
     print(Terminal)
     print(Production)
-    grammar = open('grammar2.txt').read()
+    grammar = open('grammarsementara.txt').read()
     Terminal, Variabel, Production = readGrammarFile(grammar)
     for var in Variabel:
         if var in variablesJar:
             variablesJar.remove(var)
     Production = replaceStart(Production, Variabel)
-    Production = replaceTerminal(Production, Variabel, Terminal)
+    Production = replaceTerminal(Production, Variabel, Terminal)    
     Production = remove2PlusVariable(Production, Variabel)
     Production = removeUnit(Production, Variabel)
     Production = ProdDict(Production)
