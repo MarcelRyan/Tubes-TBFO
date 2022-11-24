@@ -15,3 +15,17 @@ NIM | Nama |
 13521127 | Marcel Ryan Antony |
 13521145 | Kenneth Dave Bahana |
 13521159 | Sulthan Dzaky Alfaro |
+
+## Requirements
+*** Libraries ***<br />
+* itertools<br />
+* sys<br />
+* re<br />
+
+## Cara menjalankan Program
+Untuk menjalankan program cukup lakukan run pada file main.py
+
+## Screenshots
+Berikut tampilan pada terminal apabila file main.py di jalankan
+![image](https://user-images.githubusercontent.com/88817627/203849222-c463f620-4e1c-4ca8-a330-34e1088f0c99.png)
+
