@@ -27,12 +27,20 @@ def splitcode(nama_file):
             else:
                 split = list(stmnt2)
                 hasil.extend(split)
+    hasil_selanjutnya = []
+    idx = 0
+    while(idx!=len(hasil)):
+        if(hasil[idx]=='/' and hasil[idx+1]=='/'):
+            while(hasil[idx]!='\n'):
+                idx+=1
+        hasil_selanjutnya.append(hasil[idx])
+        idx+=1
     hasil_akhir = []
-    for i in range(len(hasil)):
-        if(hasil[i]=='\n'):
+    for i in range(len(hasil_selanjutnya)):
+        if(hasil_selanjutnya[i]=='\n'):
             continue
         else:
-            hasil_akhir.append(hasil[i])
+            hasil_akhir.append(hasil_selanjutnya[i])
     hasil_final = []
     for i in range(len(hasil_akhir)):
         if(hasil_akhir[i]==' ' and ((hasil_akhir[i-1] in oprt2) or (hasil_akhir[i+1] in oprt2))):
@@ -42,5 +50,5 @@ def splitcode(nama_file):
         else:
             hasil_final.append(hasil_akhir[i])
     return hasil_final
-y = splitcode('D:\\python\\Tubes TBFO\\Tubes-TBFO\\coba.txt')
-print(y)
+# y = splitcode('D:\\python\\Tubes TBFO\\Tubes-TBFO\\test.txt')
+# print(y)
