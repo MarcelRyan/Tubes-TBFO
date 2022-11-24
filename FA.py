@@ -1,16 +1,28 @@
 def state_1(char): # Start state untuk mengecek variabel valid atau tidak
-    if (ord(char) == 95 or (ord(char) >= 65 and ord(char) <= 90) or (ord(char) >= 97 and ord(char) <= 122)):
+    if ((ord(char) >= 65 and ord(char) <= 90) or (ord(char) >= 97 and ord(char) <= 122)):
         state = 2
+    elif (ord(char) == 95 or ord(char) == 36):
+        state = 15
     else:
         state = 3
     return state
 
 def state_2(char): # final state untuk mengecek sebuah variabel valid atau tidak
-    if (ord(char) == 95 or (ord(char) >= 65 and ord(char) <= 90) or (ord(char) >= 97 and ord(char) <= 122) or (ord(char) >= 48 and ord(char) <= 57)):
+    if (ord(char) == 95 or ord(char) == 36 or (ord(char) >= 65 and ord(char) <= 90) or (ord(char) >= 97 and ord(char) <= 122) or (ord(char) >= 48 and ord(char) <= 57)):
         state = 2
     else:
         state = 3
     return state
+
+def state_15(char): # Apabila nama variabel diawali $ atau _
+    if ((ord(char) >= 65 and ord(char) <= 90) or (ord(char) >= 97 and ord(char) <= 122) or (ord(char) >= 48 and ord(char) <= 57)):
+        state = 2
+    elif (ord(char) == 95 or ord(char) == 36):
+        state = 15
+    else:
+        state = 3
+    return state
+
 
 def state_3(char): # dead state apabila variabel sudah tidak valid
     state = 3
@@ -19,15 +31,25 @@ def state_3(char): # dead state apabila variabel sudah tidak valid
 def state_4(char): # Start state untuk mengecek apakah sebuah value valid atau tidak
     if (ord(char) >= 48 and ord(char) <= 57):
         state = 5
+    elif (ord(char) == 45):
+        state = 14
     else:
         state = 6
-
-def state_5(char): # Final state untuk mengecek apakah sebuah value valid atau tidak
-    print(ord(char))
+    return state
+    
+def state_14(char):
     if (ord(char) >= 48 and ord(char) <= 57):
         state = 5
     else:
         state = 6
+    return state
+
+def state_5(char): # Final state untuk mengecek apakah sebuah value valid atau tidak
+    if (ord(char) >= 48 and ord(char) <= 57):
+        state = 5
+    else:
+        state = 6
+    return state
 
 def state_6(char): # Dead state apabila value sudah pasti tidak valid
     state = 6
@@ -94,6 +116,8 @@ def VariabelValid(str): # Simulasi FA untuk mengecek apakah syntax variabel suda
             state = state_2(str[i])
         elif (state == 3):
             state = state_3(str[i])
+        elif (state == 15):
+            state = state_15(str[i])
     
     if (state == 2):
         return True
@@ -109,6 +133,8 @@ def ValueValid(str): # Simulasi FA untuk mengecek apakah syntax value sudah vali
             state = state_5(str[i])
         elif (state == 6):
             state = state_6(str[i])
+        elif (state == 14):
+            state = state_14(str[i])
     
     if (state == 5):
         return True
@@ -139,13 +165,13 @@ def OperatorValid(str): # Simulasi FA untuk mengecek apakah syntax operator suda
         return False
     
 
-# str1 = "#12a"
+# str1 = "$$$$23"
 # if (VariabelValid(str1)):
 #     print("Variabel diterima")
 # else:
 #     print("Variabel ditolak")
 
-# str2 = "1_3"
+# str2 = "-13"
 # if (ValueValid(str2)):
 #     print("Value diterima")
 # else:
