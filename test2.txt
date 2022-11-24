@@ -1,0 +1,11 @@
+function do_something(x){
+    // This is a comment
+    if (a > 2){
+        x = 3;
+        return x;
+    }
+    else if (a >= 4){
+        return x;
+    }
+    return "ok";
+}

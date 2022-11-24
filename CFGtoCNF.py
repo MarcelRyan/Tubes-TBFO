@@ -31,7 +31,17 @@ variablesJar = ["A1", "B1", "C1", "D1", "E1", "F1", "G1", "H1", "I1", "J1", "K1"
 "A29", "B29", "C29", "D29", "E29", "F29", "G29", "H29", "I29", "J29", "K29", "L29", "M29", "N29", "O29", "P29", "Q29", "R29", "S29", "T29", "U29", "V29", "W29", "X29", "Y29", "Z29",
 "A30", "B30", "C30", "D30", "E30", "F30", "G30", "H30", "I30", "J30", "K30", "L30", "M30", "N30", "O30", "P30", "Q30", "R30", "S30", "T30", "U30", "V30", "W30", "X30", "Y30", "Z30",
 "A31", "B31", "C31", "D31", "E31", "F31", "G31", "H31", "I31", "J31", "K31", "L31", "M31", "N31", "O31", "P31", "Q31", "R31", "S31", "T31", "U31", "V31", "W31", "X31", "Y31", "Z31",
-"A32", "B32", "C32", "D32", "E32", "F32", "G32", "H32", "I32", "J32", "K32", "L32", "M32", "N32", "O32", "P32", "Q32", "R32", "S32", "T32", "U32", "V32", "W32", "X32", "Y32", "Z32"]
+"A32", "B32", "C32", "D32", "E32", "F32", "G32", "H32", "I32", "J32", "K32", "L32", "M32", "N32", "O32", "P32", "Q32", "R32", "S32", "T32", "U32", "V32", "W32", "X32", "Y32", "Z32",
+"A33", "B33", "C33", "D33", "E33", "F33", "G33", "H33", "I33", "J33", "K33", "L33", "M33", "N33", "O33", "P33", "Q33", "R33", "S33", "T33", "U33", "V33", "W33", "X33", "Y33", "Z33",
+"A34", "B34", "C34", "D34", "E34", "F34", "G34", "H34", "I34", "J34", "K34", "L34", "M34", "N34", "O34", "P34", "Q34", "R34", "S34", "T34", "U34", "V34", "W34", "X34", "Y34", "Z34",
+"A35", "B35", "C35", "D35", "E35", "F35", "G35", "H35", "I35", "J35", "K35", "L35", "M35", "N35", "O35", "P35", "Q35", "R35", "S35", "T35", "U35", "V35", "W35", "X35", "Y35", "Z35",
+"A36", "B36", "C36", "D36", "E36", "F36", "G36", "H36", "I36", "J36", "K36", "L36", "M36", "N36", "O36", "P36", "Q36", "R36", "S36", "T36", "U36", "V36", "W36", "X36", "Y36", "Z36",
+"A37", "B37", "C37", "D37", "E37", "F37", "G37", "H37", "I37", "J37", "K37", "L37", "M37", "N37", "O37", "P37", "Q37", "R37", "S37", "T37", "U37", "V37", "W37", "X37", "Y37", "Z37",
+"A38", "B38", "C38", "D38", "E38", "F38", "G38", "H38", "I38", "J38", "K38", "L38", "M38", "N38", "O38", "P38", "Q38", "R38", "S38", "T38", "U38", "V38", "W38", "X38", "Y38", "Z38",
+"A39", "B39", "C39", "D39", "E39", "F39", "G39", "H39", "I39", "J39", "K39", "L39", "M39", "N39", "O39", "P39", "Q39", "R39", "S39", "T39", "U39", "V39", "W39", "X39", "Y39", "Z39",
+"A40", "B40", "C40", "D40", "E40", "F40", "G40", "H40", "I40", "J40", "K40", "L40", "M40", "N40", "O40", "P40", "Q40", "R40", "S40", "T40", "U40", "V40", "W40", "X40", "Y40", "Z40",
+"A41", "B41", "C41", "D41", "E41", "F41", "G41", "H41", "I41", "J41", "K41", "L41", "M41", "N41", "O41", "P41", "Q41", "R41", "S41", "T41", "U41", "V41", "W41", "X41", "Y41", "Z41",
+"A42", "B42", "C42", "D42", "E42", "F42", "G42", "H42", "I42", "J42", "K42", "L42", "M42", "N42", "O42", "P42", "Q42", "R42", "S42", "T42", "U42", "V42", "W42", "X42", "Y42", "Z42"]
 
 def readGrammarFile(file): # Membaca file grammar
     Terminal = file.split("Variables:\n")[0].replace("Terminals:\n", "").replace("\n", "")
@@ -40,12 +50,16 @@ def readGrammarFile(file): # Membaca file grammar
     finalProd = []
     Terminal = Terminal.replace('  ', ' ').split(' ')
     Variables = Variables.replace('  ', ' ').split(' ')
-    Rules = RawProd.replace("\n", "").split(";")
+    Rules = RawProd.split("\n")
     for rule in Rules:
         leftproduction = rule.split(' -> ')[0].replace(" ", "")
         rightproduction = rule.split(' -> ')[1].split(" | ")
         for terms in rightproduction:
             finalProd.append((leftproduction, terms.split(' ')))
+    #print("Terminal :")
+    #print(Terminal)
+    #print("Variables: ")
+    #print(Variables)
     return Terminal, Variables, finalProd
 
 def isUnit(rules, Variables): # Menentukan apakah sebuah rule menghasilkan 1 variabel saja
@@ -152,7 +166,7 @@ def convertCFG():
     print(Variabel)
     print(Terminal)
     print(Production)
-    grammar = open('grammar2.txt').read()
+    grammar = open('grammar.txt').read()
     Terminal, Variabel, Production = readGrammarFile(grammar)
     for var in Variabel:
         if var in variablesJar:

@@ -1,8 +1,8 @@
 import re
 def splitcode(nama_file):
 
-    oprt1 = ['=', '!=', '==', '===', '>=', '<=', '<', '>', ':'',', '/', '-', r'\+', r'\*', r'\*\*', r'\'', r'\"', r'\'\'\'', r'\)', 'true', 'false', r'\{', r'\}', r'\[', r'\]', 'for', 'else', 'while', 'break', 'continue', 'return', r'\(', 'function', 'let', 'if', ';', 'const', 'case', 'catch', 'default', 'delete', 'finally', 'null', 'return', 'switch', 'throw', 'try', 'var', '&&', r'\|\|']
-    oprt2 = ['=', '!=', '==', '===', '>=', '<=', '<', '>', ':'',', '/', '-', '+', '*', '**', "'", '"', ')', 'true', 'false', '{', '}', '[', ']', 'for', 'else', 'while', 'break', 'continue', 'return', '(', 'function', 'let', 'if', ';', 'const', 'case', 'catch', 'default', 'delete', 'finally', 'null', 'return', 'switch', 'throw', 'try', 'var' , '&&', '||']
+    oprt1 = ['=', '!=', '==', '===', '>=', '<=', '<', '>', ':', ',', '/', '-', r'\+', r'\*', r'\*\*', r'\'', r'\"', r'\'\'\'', r'\)', 'true', 'false', r'\{', r'\}', r'\[', r'\]', 'for', 'else', 'while', 'break', 'continue', 'return', r'\(', 'function', 'let', 'if', ';', 'const', 'case', 'catch', 'default', 'delete', 'finally', 'null', 'return', 'switch', 'throw', 'try', 'var', '&&', r'\|\|']
+    oprt2 = ['=', '!=', '==', '===', '>=', '<=', '<', '>', ':', ',', '/', '-', '+', '*', '**', "'", '"', ')', 'true', 'false', '{', '}', '[', ']', 'for', 'else', 'while', 'break', 'continue', 'return', '(', 'function', 'let', 'if', ';', 'const', 'case', 'catch', 'default', 'delete', 'finally', 'null', 'return', 'switch', 'throw', 'try', 'var' , '&&', '||']
 
     file = open(nama_file,"r")
     isi  = file.read()
@@ -50,5 +50,5 @@ def splitcode(nama_file):
         else:
             hasil_final.append(hasil_akhir[i])
     return hasil_final
-# y = splitcode('D:\\python\\Tubes TBFO\\Tubes-TBFO\\test.txt')
-# print(y)
+#y = splitcode('D:\\python\\Tubes TBFO\\Tubes-TBFO\\test.txt')
+#print(y)
