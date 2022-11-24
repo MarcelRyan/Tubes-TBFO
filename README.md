@@ -26,6 +26,6 @@ NIM | Nama |
 Untuk menjalankan program cukup lakukan run pada file main.py
 
 ## Screenshots
-Berikut tampilan pada terminal apabila file main.py di jalankan
+Berikut tampilan pada terminal apabila file main.py di jalankan<br />
 ![image](https://user-images.githubusercontent.com/88817627/203849222-c463f620-4e1c-4ca8-a330-34e1088f0c99.png)
 
