@@ -1,4 +1,5 @@
 import itertools
+import sys 
 variablesJar = ["A1", "B1", "C1", "D1", "E1", "F1", "G1", "H1", "I1", "J1", "K1", "L1", "M1", "N1", "O1", "P1", "Q1", "R1", "S1", "T1", "U1", "V1", "W1", "X1", "Y1", "Z1",
 "A2", "B2", "C2", "D2", "E2", "F2", "G2", "H2", "I2", "J2", "K2", "L2", "M2", "N2", "O2", "P2", "Q2", "R2", "S2", "T2", "U2", "V2", "W2", "X2", "Y2", "Z2",
 "A3", "B3", "C3", "D3", "E3", "F3", "G3", "H3", "I3", "J3", "K3", "L3", "M3", "N3", "O3", "P3", "Q3", "R3", "S3", "T3", "U3", "V3", "W3", "X3", "Y3", "Z3",
@@ -18,13 +19,27 @@ variablesJar = ["A1", "B1", "C1", "D1", "E1", "F1", "G1", "H1", "I1", "J1", "K1"
 "A17", "B17", "C17", "D17", "E17", "F17", "G17", "H17", "I17", "J17", "K17", "L17", "M17", "N17", "O17", "P17", "Q17", "R17", "S17", "T17", "U17", "V17", "W17", "X17", "Y17", "Z17",
 "A18", "B18", "C18", "D18", "E18", "F18", "G18", "H18", "I18", "J18", "K18", "L18", "M18", "N18", "O18", "P18", "Q18", "R18", "S18", "T18", "U18", "V18", "W18", "X18", "Y18", "Z18",
 "A19", "B19", "C19", "D19", "E19", "F19", "G19", "H19", "I19", "J19", "K19", "L19", "M19", "N19", "O19", "P19", "Q19", "R19", "S19", "T19", "U19", "V19", "W19", "X19", "Y19", "Z19",
-"A20", "B20", "C20", "D20", "E20", "F20", "G20", "H20", "I20", "J20", "K20", "L20", "M20", "N20", "O20", "P20", "Q20", "R20", "S20", "T20", "U20", "V20", "W20", "X20", "Y20", "Z20"]
+"A20", "B20", "C20", "D20", "E20", "F20", "G20", "H20", "I20", "J20", "K20", "L20", "M20", "N20", "O20", "P20", "Q20", "R20", "S20", "T20", "U20", "V20", "W20", "X20", "Y20", "Z20",
+"A21", "B21", "C21", "D21", "E21", "F21", "G21", "H21", "I21", "J21", "K21", "L21", "M21", "N21", "O21", "P21", "Q21", "R21", "S21", "T21", "U21", "V21", "W21", "X21", "Y21", "Z21",
+"A22", "B22", "C22", "D22", "E22", "F22", "G22", "H22", "I22", "J22", "K22", "L22", "M22", "N22", "O22", "P22", "Q22", "R22", "S22", "T22", "U22", "V22", "W22", "X22", "Y22", "Z22",
+"A23", "B23", "C23", "D23", "E23", "F23", "G23", "H23", "I23", "J23", "K23", "L23", "M23", "N23", "O23", "P23", "Q23", "R23", "S23", "T23", "U23", "V23", "W23", "X23", "Y23", "Z23",
+"A24", "B24", "C24", "D24", "E24", "F24", "G24", "H24", "I24", "J24", "K24", "L24", "M24", "N24", "O24", "P24", "Q24", "R24", "S24", "T24", "U24", "V24", "W24", "X24", "Y24", "Z24",
+"A25", "B25", "C25", "D25", "E25", "F25", "G25", "H25", "I25", "J25", "K25", "L25", "M25", "N25", "O25", "P25", "Q25", "R25", "S25", "T25", "U25", "V25", "W25", "X25", "Y25", "Z25",
+"A26", "B26", "C26", "D26", "E26", "F26", "G26", "H26", "I26", "J26", "K26", "L26", "M26", "N26", "O26", "P26", "Q26", "R26", "S26", "T26", "U26", "V26", "W26", "X26", "Y26", "Z26",
+"A27", "B27", "C27", "D27", "E27", "F27", "G27", "H27", "I27", "J27", "K27", "L27", "M27", "N27", "O27", "P27", "Q27", "R27", "S27", "T27", "U27", "V27", "W27", "X27", "Y27", "Z27",
+"A28", "B28", "C28", "D28", "E28", "F28", "G28", "H28", "I28", "J28", "K28", "L28", "M28", "N28", "O28", "P28", "Q28", "R28", "S28", "T28", "U28", "V28", "W28", "X28", "Y28", "Z28",
+"A29", "B29", "C29", "D29", "E29", "F29", "G29", "H29", "I29", "J29", "K29", "L29", "M29", "N29", "O29", "P29", "Q29", "R29", "S29", "T29", "U29", "V29", "W29", "X29", "Y29", "Z29",
+"A30", "B30", "C30", "D30", "E30", "F30", "G30", "H30", "I30", "J30", "K30", "L30", "M30", "N30", "O30", "P30", "Q30", "R30", "S30", "T30", "U30", "V30", "W30", "X30", "Y30", "Z30",
+"A31", "B31", "C31", "D31", "E31", "F31", "G31", "H31", "I31", "J31", "K31", "L31", "M31", "N31", "O31", "P31", "Q31", "R31", "S31", "T31", "U31", "V31", "W31", "X31", "Y31", "Z31",
+"A32", "B32", "C32", "D32", "E32", "F32", "G32", "H32", "I32", "J32", "K32", "L32", "M32", "N32", "O32", "P32", "Q32", "R32", "S32", "T32", "U32", "V32", "W32", "X32", "Y32", "Z32"]
 
 def readGrammarFile(file): # Membaca file grammar
     Terminal = file.split("Variables:\n")[0].replace("Terminals:\n", "").replace("\n", "")
     Variables = file.split("Variables:\n")[1].split("Productions:\n")[0].replace("Productions:\n", "").replace("\n", "")
     RawProd = file.split("Productions:\n")[1]
     finalProd = []
+    Terminal = Terminal.replace('  ', ' ').split(' ')
+    Variables = Variables.replace('  ', ' ').split(' ')
     Rules = RawProd.replace("\n", "").split(";")
     for rule in Rules:
         leftproduction = rule.split(' -> ')[0].replace(" ", "")
@@ -33,44 +48,119 @@ def readGrammarFile(file): # Membaca file grammar
             finalProd.append((leftproduction, terms.split(' ')))
     return Terminal, Variables, finalProd
 
-def isUnit(rules, Variables): # Menentukan apakah sebuah rules menghasilkan 1 variabel saja
+def isUnit(rules, Variables): # Menentukan apakah sebuah rule menghasilkan 1 variabel saja
     if (rules[0] in Variables) and rules[1][0] in Variables and len(rules[1]) == 1:
         return True
     else:
         return False
 
-def makeDict(Productions, Variables, Terminal):
-    dict = {'"': variablesJar.pop(), "'": variablesJar.pop()}
-    Productions.append((dict['"'], ['"']))
-    Productions.append((dict['\''], ['\'']))
+def isOneTerminal(rules, Variables, Terminal): # Menentukan apakah sebuah rule hanya menghasilkan 1 terminal saja
+    if rules[0] in Variables and rules[1][0] in Terminal and len(rules[1]) == 1:
+        return True
+    else:
+        return False
+
+def replaceStart(Productions, Variables): # Mengganti Start Symbol menjadi S0 (berjaga-jaga apabila ada rule yang memproduksi start state)
+    Variables.append('S0')
+    return [('S0', [Variables[0]])] + Productions   
+
+def makeDict(Productions, Variables, Terminal): # Membuat dictionary dengan tiap terminal menjadi key
+    dict = {}
     for prod in Productions:
         if prod[0] in Variables and prod[1][0] in Terminal and len(prod[1]) == 1:
-            dict[prod[1][0]] = variablesJar.pop()
-            Productions.append((dict[prod[1][0]], [prod[1][0]]))
-    return dict, Productions
+            dict[prod[1][0]] = prod[0]
+    return dict
 
-def replaceTerminal(Productions, Variables, Terminal): # Mengubah semua terminal menjadi variabel
-    dict, Productions = makeDict(Productions, Variables, Terminal)
-    for prod in Productions:
-        i = -1
-        for rule in prod[1]:
-            i += 1
-            if rule in Terminal and prod[0] != dict[rule]:
-                prod[1].pop(i)
-                prod[1].insert(i, dict[rule])
-    return Productions
-        
+def replaceTerminal(Productions, Variables, Terminal): # Mengubah semua rule yang mengandung variabel dan juga terminal, contoh: A->Sa menjadi A -> SZ dan Z -> a
+    new_prod = []
+    dict = makeDict(Productions, Variables, Terminal) # Membuat dictionary untuk semua terminal
+    for rules in Productions:
+        if (isOneTerminal(rules, Variables, Terminal)): # Apabila rule hanya menghasilkan 1 terminal saja tidak ada yang perlu diganti
+            new_prod.append(rules)
+        else:
+            for term in Terminal:
+                for index, value in enumerate(rules[1]):
+                    if term == value and not term in dict:
+                        dict[term] = variablesJar.pop()
+                        Variables.append(dict[term])
+                        new_prod.append((dict[term], [term]))
 
+                        rules[1][index] = dict[term]
+                    elif term == value:
+                        rules[1][index] = dict[term]
+            new_prod.append((rules[0], rules[1]))
+    
+    return new_prod
+
+def remove2PlusVariable(Productions, Variables): # Menghapus rule rule yang menghasilkan 2 variabel lebih menjadi 2 variabel atau 1 variabel saja
+    new_prod = []
+    for rules in Productions:
+        panjang = len(rules[1])
+        if panjang <= 2:
+            new_prod.append(rules)
+        else:
+            temp1 = variablesJar.pop(0)
+            Variables.append(temp1+'1')
+            new_prod.append((rules[0], [rules[1][0]]+[temp1+'1']))
+            i = 1
+            
+            for i in range(1, panjang-2):
+                temp2 = temp1+str(i)
+                temp3 = temp1+str(i+1)
+                Variables.append(temp3)
+                new_prod.append((temp2, [rules[1][i], temp3]))
+            new_prod.append((temp1+str(panjang-2), rules[1][panjang-2:panjang]))
+    return new_prod
+
+def pisahUnit(rules, variables): # Memisahkan rule yang menjadi 1 variabel saja dengan yang tidak
+    unit, non_unit = [], []
+    for rule in rules:
+        if isUnit(rule, variables):
+            unit.append((rule[0], rule[1][0]))
+        else:
+            non_unit.append(rule)
+    
+    for rule_unit in unit:
+        for rule in rules:
+            if rule_unit[1] == rule[0] and rule_unit[0] != rule[0]:
+                non_unit.append((rule_unit[0], rule[1]))
+    return non_unit
 
 def removeUnit(Productions, Variables): # Menghapus unit production
-    new_prod = []
-    for rules1 in Productions:
-        if (isUnit(rules1, Variables)):
-            temp = rules1[1][0]
-            rules1[1].pop()
-            for rules2 in Productions: 
-                if (temp == rules2[0]):
-                    rules1[1].append(rules2[1])
-        new_prod.append(rules1) 
+    i = 0
+    new_prod = pisahUnit(Productions, Variables)
+    temp = pisahUnit(new_prod, Variables)
+    while new_prod != temp and i < 1000:
+        new_prod = pisahUnit(temp, Variables)
+        temp = pisahUnit(new_prod, Variables)
+        i += 1
     return new_prod
+
+
+def ProdDict(Productions) :
+    new_dict = {}
+    for prod in Productions:
+        if (prod[0] in new_dict.keys()):
+            new_dict[prod[0]].append(prod[1])
+        else:
+            new_dict[prod[0]] = []
+            new_dict[prod[0]].append(prod[1])
+    return new_dict
+
+def convertCFG():
+    Terminal, Variabel, Production = [], [], []
+    print(Variabel)
+    print(Terminal)
+    print(Production)
+    grammar = open('grammar2.txt').read()
+    Terminal, Variabel, Production = readGrammarFile(grammar)
+    for var in Variabel:
+        if var in variablesJar:
+            variablesJar.remove(var)
+    Production = replaceStart(Production, Variabel)
+    Production = replaceTerminal(Production, Variabel, Terminal)
+    Production = remove2PlusVariable(Production, Variabel)
+    Production = removeUnit(Production, Variabel)
+    Production = ProdDict(Production)
+    return Production
 
