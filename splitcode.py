@@ -4,6 +4,7 @@ def splitcode(nama_file):
     oprt1 = ['=', '!=', '!', '==', '===', '>=', '<=', '<', '>', ':', ',', '/', '-', r'\+', r'\*', r'\*\*', r'\'', r'\"', r'\'\'\'', r'\)', 'true', 'false', r'\{', r'\}', r'\[', r'\]', 'for', 'else', 'while', 'break', 'continue', 'return', r'\(', 'function', 'let', 'if', ';', 'const', 'case', 'catch', 'default', 'delete', 'finally', 'null', 'return', 'switch', 'throw', 'try', 'var', '&&', r'\|\|', 'except']
     oprt2 = ['=', '!=', '!', '==', '===', '>=', '<=', '<', '>', ':', ',', '/', '-', '+', '*', '**', "'", '"', ')', 'true', 'false', '{', '}', '[', ']', 'for', 'else', 'while', 'break', 'continue', 'return', '(', 'function', 'let', 'if', ';', 'const', 'case', 'catch', 'default', 'delete', 'finally', 'null', 'return', 'switch', 'throw', 'try', 'var' , '&&', '||', 'except']
     variabel = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z',]
+    oprt3 = ['=', '>', '<', '!', '+', '-', '\\', '/', '*', '%', '&', '|', '"', "'"]
     file = open(nama_file,"r")
     isi  = file.read()
     file.close()
@@ -45,10 +46,12 @@ def splitcode(nama_file):
     for i in range(len(hasil_akhir)):
         if(hasil_akhir[i]==' ' and i==(len(hasil_akhir)-1)):
             continue
-        elif(hasil_akhir[i]==' ' and ((hasil_akhir[i-1] in oprt2) and (hasil_akhir[i+1] in oprt2))):
-            continue
+        elif(hasil_akhir[i]==' ' and ((hasil_akhir[i-1] in oprt3) and (hasil_akhir[i+1] in oprt3))):
+            hasil_final.append(hasil_akhir[i])
         elif(hasil_akhir[i]==' ' and ((hasil_akhir[i-1] in variabel) and (hasil_akhir[i+1] in variabel))):
             hasil_final.append(hasil_akhir[i])
+        elif(hasil_akhir[i]==' ' and ((hasil_akhir[i-1] in oprt3) or (hasil_akhir[i+1] in oprt3))):
+            continue
         elif(hasil_akhir[i]==' ' and ((hasil_akhir[i-1] in variabel) or (hasil_akhir[i+1] in variabel))):
             continue
         elif(hasil_akhir[i]==' ' and ((hasil_akhir[i-1] in oprt2) or (hasil_akhir[i+1] in oprt2))):
@@ -56,5 +59,5 @@ def splitcode(nama_file):
         else:
             hasil_final.append(hasil_akhir[i])
     return hasil_final
-# y = splitcode('D:\\python\\Tubes TBFO\\Tubes-TBFO\\coab.txt')
-# print(y)
+y = splitcode('D:\\python\\Tubes TBFO\\Tubes-TBFO\\coab.txt')
+print(y)
