@@ -1,8 +1,8 @@
 import re
 def splitcode(nama_file):
 
-    oprt1 = ['=', '!=', '!', '==', '===', '>=', '<=', '<', '>', ':', ',', '/', '-', r'\+', r'\*', r'\*\*', r'\'', r'\"', r'\'\'\'', r'\)', 'true', 'false', r'\{', r'\}', r'\[', r'\]', 'for', 'else', 'while', 'break', 'continue', 'return', r'\(', 'function', 'let', 'if', ';', 'const', 'case', 'catch', 'default', 'delete', 'finally', 'null', 'return', 'switch', 'throw', 'try', 'var', '&&', r'\|\|', 'except']
-    oprt2 = ['=', '!=', '!', '==', '===', '>=', '<=', '<', '>', ':', ',', '/', '-', '+', '*', '**', "'", '"', ')', 'true', 'false', '{', '}', '[', ']', 'for', 'else', 'while', 'break', 'continue', 'return', '(', 'function', 'let', 'if', ';', 'const', 'case', 'catch', 'default', 'delete', 'finally', 'null', 'return', 'switch', 'throw', 'try', 'var' , '&&', '||', 'except']
+    oprt1 = ['=', '!=', '!', '==', '===', '>=', '<=', '<', '>', ':', ',', '/', '-', r'\+', r'\*', r'\*\*', r'\'', r'\"', r'\'\'\'', r'\)', 'true', 'false', r'\{', r'\}', r'\[', r'\]', 'for', 'else', 'while', 'break', 'continue', 'return', r'\(', 'function', 'let', 'if', ';', 'const', 'case', 'catch', 'default', 'delete', 'finally', 'null', 'return', 'switch', 'throw', 'try', 'var', '&&', r'\|\|', 'except', r'\?']
+    oprt2 = ['=', '!=', '!', '==', '===', '>=', '<=', '<', '>', ':', ',', '/', '-', '+', '*', '**', "'", '"', ')', 'true', 'false', '{', '}', '[', ']', 'for', 'else', 'while', 'break', 'continue', 'return', '(', 'function', 'let', 'if', ';', 'const', 'case', 'catch', 'default', 'delete', 'finally', 'null', 'return', 'switch', 'throw', 'try', 'var' , '&&', '||', 'except', '?']
     variabel = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z',]
     oprt3 = ['=', '>', '<', '!', '+', '-', '\\', '/', '*', '%', '&', '|']
     file = open(nama_file,"r")
@@ -49,6 +49,8 @@ def splitcode(nama_file):
     while(idx<len(hasil_selanjutnya1)):#buat menghilangkan komen //
         if(idx+1!=len(hasil_selanjutnya1) and hasil_selanjutnya1[idx]=='/' and hasil_selanjutnya1[idx+1]=='/'):
             while(hasil_selanjutnya1[idx]!='\n' and idx<len(hasil_selanjutnya1)-1):
+                if(idx==len(hasil_selanjutnya1)-1 and hasil_selanjutnya1[idx]==' '):
+                    break    
                 idx+=1
         if(idx>=len(hasil_selanjutnya1)-1):
             break
