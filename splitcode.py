@@ -76,16 +76,23 @@ def splitcode(nama_file):
             continue
         else:
             hasil_final.append(hasil_akhir[i])
-
-    for i in range(len(hasil_final)-5):
-        if hasil_final[i] == 'd' and hasil_final[i+1] == 'e' and hasil_final[i+2] == 'let' and hasil_final[i+3] == 'e' and hasil_final[i+4] == ' ':
+    i = 0
+    while (i < len(hasil_final)-5):
+        if (hasil_final[i] == 'd' and hasil_final[i+1] == 'e' and hasil_final[i+2] == 'let' and hasil_final[i+3] == 'e' and hasil_final[i+4] == ' '): # Kalau delete sintaks dari javascript
             hasil_final.pop(i)
             hasil_final.pop(i)
             hasil_final.pop(i)
             hasil_final.pop(i)
             hasil_final.pop(i)
             hasil_final.insert(i, 'delete')
-
+            i -= 4
+        elif (hasil_final[i] == 'd' and hasil_final[i+1] == 'e' and hasil_final[i+2] == 'let' and hasil_final[i+3] == 'e'): # Kalau delete berupa string bukan sintaks dari javascript
+            hasil_final.pop(i+2)
+            hasil_final.insert(i+2, 't')
+            hasil_final.insert(i+2, 'e')
+            hasil_final.insert(i+2, 'l')
+            i += 2
+        i += 1
     return hasil_final
 
 # y = splitcode('D:\\python\\Tubes TBFO\\Tubes-TBFO\\coab.txt')
