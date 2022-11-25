@@ -17,7 +17,6 @@ def splitcode(nama_file):
             for split in elmnt:
                 hasil.append(split)
         isi = hasil
-
     hasil = []
     for stmnt2 in isi:
         if(stmnt2 in oprt2):

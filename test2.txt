@@ -1,1 +1,14 @@
-console.log(x);
+switch( i )
+{
+    case 3:
+        n++;
+        break;
+    case 0 :
+        x++;
+        break;
+    case 1 :
+        p++;
+        break;
+    default:
+        break;
+}
