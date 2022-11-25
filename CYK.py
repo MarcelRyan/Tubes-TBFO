@@ -20,4 +20,4 @@ def Cyk(out,cnf):
     if "S0" in table[0][length-1]:
         print("Accepted Syntax :D")
     else:
-        print("Sytax Error D:")
+        print("Syntax Error D:")
