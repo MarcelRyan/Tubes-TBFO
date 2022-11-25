@@ -23,7 +23,7 @@ def splitcode(nama_file):
         if(stmnt2 in oprt2):
             hasil.append(stmnt2)
         else:
-            if (stmnt2 == 'await' or stmnt2 == 'of'  or stmnt2 == 'in' or stmnt2 == 'if' or stmnt2 == '&&' or stmnt2 == '||'):
+            if (stmnt2 == 'await' or stmnt2 == 'of'  or stmnt2 == 'in' or stmnt2 == 'if' or stmnt2 == '&&' or stmnt2 == '||' or stmnt2=='let' or stmnt2=='delete'):
                 hasil.append(stmnt2)
             else:
                 split = list(stmnt2)
@@ -49,14 +49,11 @@ def splitcode(nama_file):
     while(idx<len(hasil_selanjutnya1)):#buat menghilangkan komen //
         if(idx+1!=len(hasil_selanjutnya1) and hasil_selanjutnya1[idx]=='/' and hasil_selanjutnya1[idx+1]=='/'):
             while(hasil_selanjutnya1[idx]!='\n' and idx<len(hasil_selanjutnya1)-1):
-                if(idx==len(hasil_selanjutnya1)-1 and hasil_selanjutnya1[idx]==' '):
-                    break    
                 idx+=1
-        if(idx>=len(hasil_selanjutnya1)-1):
-            break
-        else:
-            hasil_selanjutnya.append(hasil_selanjutnya1[idx])
-            idx+=1
+            if(idx>=len(hasil_selanjutnya1)-1):
+                break
+        hasil_selanjutnya.append(hasil_selanjutnya1[idx])
+        idx+=1
     hasil_akhir = []
     for i in range(len(hasil_selanjutnya)):
         if(hasil_selanjutnya[i]=='\n'):
