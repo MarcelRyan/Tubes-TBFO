@@ -56,10 +56,6 @@ def readGrammarFile(file): # Membaca file grammar
         rightproduction = rule.split(' -> ')[1].split(" | ")
         for terms in rightproduction:
             finalProd.append((leftproduction, terms.split(' ')))
-    #print("Terminal :")
-    #print(Terminal)
-    #print("Variables: ")
-    #print(Variables)
     return Terminal, Variables, finalProd
 
 def isUnit(rules, Variables): # Menentukan apakah sebuah rule menghasilkan 1 variabel saja
@@ -163,9 +159,6 @@ def ProdDict(Productions) : # Membuat dictionary untuk production akhir
 
 def convertCFG():
     Terminal, Variabel, Production = [], [], []
-    print(Variabel)
-    print(Terminal)
-    print(Production)
     grammar = open('grammar.txt').read()
     Terminal, Variabel, Production = readGrammarFile(grammar)
     for var in Variabel:
