@@ -1,8 +1,6 @@
 def state_1(char): # Start state untuk mengecek variabel valid atau tidak
-    if ((ord(char) >= 65 and ord(char) <= 90) or (ord(char) >= 97 and ord(char) <= 122)):
+    if ((ord(char) >= 65 and ord(char) <= 90) or (ord(char) >= 97 and ord(char) <= 122) or ord(char) == 95 or ord(char) == 36):
         state = 2
-    elif (ord(char) == 95 or ord(char) == 36):
-        state = 15
     else:
         state = 3
     return state
@@ -14,14 +12,6 @@ def state_2(char): # final state untuk mengecek sebuah variabel valid atau tidak
         state = 3
     return state
 
-def state_15(char): # Apabila nama variabel diawali $ atau _
-    if ((ord(char) >= 65 and ord(char) <= 90) or (ord(char) >= 97 and ord(char) <= 122) or (ord(char) >= 48 and ord(char) <= 57)):
-        state = 2
-    elif (ord(char) == 95 or ord(char) == 36):
-        state = 15
-    else:
-        state = 3
-    return state
 
 
 def state_3(char): # dead state apabila variabel sudah tidak valid
@@ -116,8 +106,6 @@ def VariabelValid(str): # Simulasi FA untuk mengecek apakah syntax variabel suda
             state = state_2(str[i])
         elif (state == 3):
             state = state_3(str[i])
-        elif (state == 15):
-            state = state_15(str[i])
     
     if (state == 2):
         return True
@@ -165,7 +153,7 @@ def OperatorValid(str): # Simulasi FA untuk mengecek apakah syntax operator suda
         return False
     
 
-# str1 = "$$$$23"
+# str1 = "$$$$"
 # if (VariabelValid(str1)):
 #     print("Variabel diterima")
 # else:
