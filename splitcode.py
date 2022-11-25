@@ -46,7 +46,7 @@ def splitcode(nama_file):
         if(hasil_akhir[i]==' ' and i==(len(hasil_akhir)-1)):
             continue
         elif(hasil_akhir[i]==' ' and ((hasil_akhir[i-1] in oprt2) and (hasil_akhir[i+1] in oprt2))):
-            hasil_final.append(hasil_akhir[i])
+            continue
         elif(hasil_akhir[i]==' ' and ((hasil_akhir[i-1] in variabel) and (hasil_akhir[i+1] in variabel))):
             hasil_final.append(hasil_akhir[i])
         elif(hasil_akhir[i]==' ' and ((hasil_akhir[i-1] in variabel) or (hasil_akhir[i+1] in variabel))):
@@ -56,5 +56,5 @@ def splitcode(nama_file):
         else:
             hasil_final.append(hasil_akhir[i])
     return hasil_final
-#y = splitcode('D:\\python\\Tubes TBFO\\Tubes-TBFO\\test.txt')
-#print(y)
+# y = splitcode('D:\\python\\Tubes TBFO\\Tubes-TBFO\\coab.txt')
+# print(y)
