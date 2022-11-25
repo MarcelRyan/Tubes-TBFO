@@ -46,12 +46,15 @@ def splitcode(nama_file):
 
     hasil_selanjutnya = []
     idx = 0
-    while(idx!=len(hasil_selanjutnya1)):#buat menghilangkan komen //
+    while(idx<len(hasil_selanjutnya1)):#buat menghilangkan komen //
         if(idx+1!=len(hasil_selanjutnya1) and hasil_selanjutnya1[idx]=='/' and hasil_selanjutnya1[idx+1]=='/'):
-            while(hasil_selanjutnya1[idx]!='\n'):
+            while(hasil_selanjutnya1[idx]!='\n' and idx<len(hasil_selanjutnya1)-1):
                 idx+=1
-        hasil_selanjutnya.append(hasil_selanjutnya1[idx])
-        idx+=1
+        if(idx>=len(hasil_selanjutnya1)-1):
+            break
+        else:
+            hasil_selanjutnya.append(hasil_selanjutnya1[idx])
+            idx+=1
     hasil_akhir = []
     for i in range(len(hasil_selanjutnya)):
         if(hasil_selanjutnya[i]=='\n'):
@@ -75,5 +78,5 @@ def splitcode(nama_file):
         else:
             hasil_final.append(hasil_akhir[i])
     return hasil_final
-# y = splitcode('D:\\python\\Tubes TBFO\\Tubes-TBFO\\coab.txt')
-# print(y)
+y = splitcode('D:\\python\\Tubes TBFO\\Tubes-TBFO\\coab.txt')
+print(y)
