@@ -21,6 +21,7 @@ NIM | Nama |
 * itertools<br />
 * sys<br />
 * re<br />
+* time<br />
 
 ## Cara menjalankan Program
 Untuk menjalankan program cukup lakukan run pada file main.py

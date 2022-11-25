@@ -1,9 +1,10 @@
 import re
 def splitcode(nama_file):
 
-    oprt1 = ['=', '!=', '==', '===', '>=', '<=', '<', '>', ':', ',', '/', '-', r'\+', r'\*', r'\*\*', r'\'', r'\"', r'\'\'\'', r'\)', 'true', 'false', r'\{', r'\}', r'\[', r'\]', 'for', 'else', 'while', 'break', 'continue', 'return', r'\(', 'function', 'let', 'if', ';', 'const', 'case', 'catch', 'default', 'delete', 'finally', 'null', 'return', 'switch', 'throw', 'try', 'var', '&&', r'\|\|']
-    oprt2 = ['=', '!=', '==', '===', '>=', '<=', '<', '>', ':', ',', '/', '-', '+', '*', '**', "'", '"', ')', 'true', 'false', '{', '}', '[', ']', 'for', 'else', 'while', 'break', 'continue', 'return', '(', 'function', 'let', 'if', ';', 'const', 'case', 'catch', 'default', 'delete', 'finally', 'null', 'return', 'switch', 'throw', 'try', 'var' , '&&', '||']
-
+    oprt1 = ['=', '!=', '!', '==', '===', '>=', '<=', '<', '>', ':', ',', '/', '-', r'\+', r'\*', r'\*\*', r'\'', r'\"', r'\'\'\'', r'\)', 'true', 'false', r'\{', r'\}', r'\[', r'\]', 'for', 'else', 'while', 'break', 'continue', 'return', r'\(', 'function', 'let', 'if', ';', 'const', 'case', 'catch', 'default', 'delete', 'finally', 'null', 'return', 'switch', 'throw', 'try', 'var', '&&', r'\|\|', 'except']
+    oprt2 = ['=', '!=', '!', '==', '===', '>=', '<=', '<', '>', ':', ',', '/', '-', '+', '*', '**', "'", '"', ')', 'true', 'false', '{', '}', '[', ']', 'for', 'else', 'while', 'break', 'continue', 'return', '(', 'function', 'let', 'if', ';', 'const', 'case', 'catch', 'default', 'delete', 'finally', 'null', 'return', 'switch', 'throw', 'try', 'var' , '&&', '||', 'except']
+    variabel = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z',]
+    oprt3 = ['=', '>', '<', '!', '+', '-', '\\', '/', '*', '%', '&', '|']
     file = open(nama_file,"r")
     isi  = file.read()
     file.close()
@@ -27,13 +28,29 @@ def splitcode(nama_file):
             else:
                 split = list(stmnt2)
                 hasil.extend(split)
+    hasil_selanjutnya1 = []
+    komen = 0
+    while(komen!=len(hasil)):
+        if(komen+1!=len(hasil) and hasil[komen]=='/' and hasil[komen+1]=='*'):
+            j = komen
+            hasil_selanjutnya1.append(hasil[j])
+            hasil_selanjutnya1.append(hasil[j+1])
+            while(komen<len(hasil) and (hasil[komen]!='*' or hasil[komen+1]!='/')):
+                    komen+=1
+        if(komen>=len(hasil)):
+            break
+        else:
+            hasil_selanjutnya1.append(hasil[komen])
+            komen+=1
+
+
     hasil_selanjutnya = []
     idx = 0
-    while(idx!=len(hasil)):
-        if(hasil[idx]=='/' and hasil[idx+1]=='/'):
-            while(hasil[idx]!='\n'):
+    while(idx!=len(hasil_selanjutnya1)):#buat menghilangkan komen //
+        if(idx+1!=len(hasil_selanjutnya1) and hasil_selanjutnya1[idx]=='/' and hasil_selanjutnya1[idx+1]=='/'):
+            while(hasil_selanjutnya1[idx]!='\n'):
                 idx+=1
-        hasil_selanjutnya.append(hasil[idx])
+        hasil_selanjutnya.append(hasil_selanjutnya1[idx])
         idx+=1
     hasil_akhir = []
     for i in range(len(hasil_selanjutnya)):
@@ -43,12 +60,20 @@ def splitcode(nama_file):
             hasil_akhir.append(hasil_selanjutnya[i])
     hasil_final = []
     for i in range(len(hasil_akhir)):
-        if(hasil_akhir[i]==' ' and ((hasil_akhir[i-1] in oprt2) or (hasil_akhir[i+1] in oprt2))):
+        if(hasil_akhir[i]==' ' and i==(len(hasil_akhir)-1)):
             continue
-        elif(hasil_akhir[i]==' ' and ((hasil_akhir[i-1] in oprt2) and (hasil_akhir[i+1] in oprt2))):
+        elif(hasil_akhir[i]==' ' and ((hasil_akhir[i-1] in oprt3) and (hasil_akhir[i+1] in oprt3))):
+            hasil_final.append(hasil_akhir[i])
+        elif(hasil_akhir[i]==' ' and ((hasil_akhir[i-1] in variabel) and (hasil_akhir[i+1] in variabel))):
+            hasil_final.append(hasil_akhir[i])
+        elif(hasil_akhir[i]==' ' and ((hasil_akhir[i-1] in oprt3) or (hasil_akhir[i+1] in oprt3))):
+            continue
+        elif(hasil_akhir[i]==' ' and ((hasil_akhir[i-1] in variabel) or (hasil_akhir[i+1] in variabel))):
+            continue
+        elif(hasil_akhir[i]==' ' and ((hasil_akhir[i-1] in oprt2) or (hasil_akhir[i+1] in oprt2))):
             continue
         else:
             hasil_final.append(hasil_akhir[i])
     return hasil_final
-#y = splitcode('D:\\python\\Tubes TBFO\\Tubes-TBFO\\test.txt')
-#print(y)
+# y = splitcode('D:\\python\\Tubes TBFO\\Tubes-TBFO\\coab.txt')
+# print(y)

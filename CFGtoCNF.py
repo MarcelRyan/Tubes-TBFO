@@ -56,10 +56,6 @@ def readGrammarFile(file): # Membaca file grammar
         rightproduction = rule.split(' -> ')[1].split(" | ")
         for terms in rightproduction:
             finalProd.append((leftproduction, terms.split(' ')))
-    #print("Terminal :")
-    #print(Terminal)
-    #print("Variables: ")
-    #print(Variables)
     return Terminal, Variables, finalProd
 
 def isUnit(rules, Variables): # Menentukan apakah sebuah rule menghasilkan 1 variabel saja
@@ -161,15 +157,12 @@ def ProdDict(Productions) : # Membuat dictionary untuk production akhir
             new_dict[prod[0]].append(prod[1])
     return new_dict
 
-def convertCFG():
+def convertCFG():   # Mengubah CFG menjadi CNF dengan menggunakan function-function diatas
     Terminal, Variabel, Production = [], [], []
-    print(Variabel)
-    print(Terminal)
-    print(Production)
     grammar = open('grammar.txt').read()
     Terminal, Variabel, Production = readGrammarFile(grammar)
-    for var in Variabel:
-        if var in variablesJar:
+    for var in Variabel:    # Apabila ada variabel yang kebetulan sama dengan variabel dalam variablesJar 
+        if var in variablesJar: # maka variabel tersebut akan dihapus dari variablesJar agar tidak terjadi ambiguitas pada dictionary
             variablesJar.remove(var)
     Production = replaceStart(Production, Variabel)
     Production = replaceTerminal(Production, Variabel, Terminal)    
