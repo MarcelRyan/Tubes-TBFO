@@ -76,6 +76,17 @@ def splitcode(nama_file):
             continue
         else:
             hasil_final.append(hasil_akhir[i])
+
+    for i in range(len(hasil_final)-5):
+        if hasil_final[i] == 'd' and hasil_final[i+1] == 'e' and hasil_final[i+2] == 'let' and hasil_final[i+3] == 'e' and hasil_final[i+4] == ' ':
+            hasil_final.pop(i)
+            hasil_final.pop(i)
+            hasil_final.pop(i)
+            hasil_final.pop(i)
+            hasil_final.pop(i)
+            hasil_final.insert(i, 'delete')
+
     return hasil_final
-y = splitcode('D:\\python\\Tubes TBFO\\Tubes-TBFO\\coab.txt')
-print(y)
+
+# y = splitcode('D:\\python\\Tubes TBFO\\Tubes-TBFO\\coab.txt')
+# print(y)
